@@ -18,11 +18,11 @@ public class ToyRobot {
         return this.coordinate;
     }
 
-    private void moveLeftOneStep() {
+    public void moveLeftOneStep() {
         this.coordinate = new Coordinate(this.coordinate.getX() - 1, this.coordinate.getY());
     }
 
-    private void moveRightOneStep() {
+    public void moveRightOneStep() {
         this.coordinate = new Coordinate(this.coordinate.getX() + 1, this.coordinate.getY());
     }
 

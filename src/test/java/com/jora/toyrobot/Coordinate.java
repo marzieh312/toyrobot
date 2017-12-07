@@ -26,4 +26,12 @@ public class Coordinate {
         result = 31 * result + y;
         return result;
     }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
+    }
 }

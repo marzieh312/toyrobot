@@ -12,11 +12,11 @@ public class ToyRobotTest {
         ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), null);
 
         //when
-        Coordinate lastPosition = toyRobot.roamingAround();
+        Coordinate lastPosition = toyRobot.roamingAround("");
 
         //then
-        Coordinate expectPosition = new Coordinate(1,2);
-        assertEquals(expectPosition, lastPosition);
+        Coordinate expectedPosition = new Coordinate(1,2);
+        assertEquals(expectedPosition, lastPosition);
     }
 
     @Test
@@ -25,22 +25,41 @@ public class ToyRobotTest {
         ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.North);
 
         //when
-        toyRobot.roamingAround();
+        toyRobot.roamingAround("");
 
         //then
-        Direction expectFace = Direction.North;
-        assertEquals(expectFace, toyRobot.getFace());
+        Direction expectedFace = Direction.North;
+        assertEquals(expectedFace, toyRobot.getFace());
     }
 
     @Test
-    void shouldPrintLastPositionAndDirectionWhenCallingReport() {
+    void shouldMoveRightInNorthDirection() {
         //Given
         ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.North);
 
         //when
-        toyRobot.roamingAround();
+        Coordinate lastPosition = toyRobot.roamingAround("RIGHT");
 
         //Then
-        assertEquals("Output: 0,1,NORTH", toyRobot.getReport());
+        Coordinate expectedPosition = new Coordinate(2,2);
+        assertEquals(expectedPosition, lastPosition);
+        Direction expectedFace = Direction.North;
+        assertEquals(expectedFace, toyRobot.getFace());
     }
+
+    @Test
+    void shouldMoveLeftInNorthDirection() {
+        //Given
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.North);
+
+        //when
+        Coordinate lastPosition = toyRobot.roamingAround("LEFT");
+
+        //Then
+        Coordinate expectedPosition = new Coordinate(0,2);
+        assertEquals(expectedPosition, lastPosition);
+        Direction expectedFace = Direction.North;
+        assertEquals(expectedFace, toyRobot.getFace());
+    }
+
 }

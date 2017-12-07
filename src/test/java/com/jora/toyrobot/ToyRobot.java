@@ -9,16 +9,25 @@ public class ToyRobot {
         this.direction = direction;
     }
 
-    public Coordinate roamingAround() {
-
+    public Coordinate roamingAround(String move) {
+        if("RIGHT".equals(move)) {
+            moveRightOneStep();
+        } else if("LEFT".equals(move)) {
+            moveLeftOneStep();
+        }
         return this.coordinate;
+    }
+
+    private void moveLeftOneStep() {
+        this.coordinate = new Coordinate(this.coordinate.getX() - 1, this.coordinate.getY());
+    }
+
+    private void moveRightOneStep() {
+        this.coordinate = new Coordinate(this.coordinate.getX() + 1, this.coordinate.getY());
     }
 
     public Direction getFace() {
         return direction;
     }
 
-    public String getReport() {
-        return "Output: 0,1,NORTH";
-    }
 }

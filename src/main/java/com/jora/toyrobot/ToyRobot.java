@@ -1,5 +1,7 @@
 package com.jora.toyrobot;
 
+import com.jora.toyrobot.commands.Command;
+
 public class ToyRobot {
     private Coordinate coordinate;
     private Direction direction;
@@ -9,11 +11,9 @@ public class ToyRobot {
         this.direction = direction;
     }
 
-    public Coordinate roamingAround(String move) {
-        if("RIGHT".equals(move)) {
-            moveRightOneStep();
-        } else if("LEFT".equals(move)) {
-            moveLeftOneStep();
+    public Coordinate roamingAround(Command command) {
+        if(command != null) {
+            command.execute(this);
         }
         return this.coordinate;
     }

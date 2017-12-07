@@ -1,6 +1,8 @@
 package com.jora.toyrobot;
 
 
+import com.jora.toyrobot.commands.LeftCommand;
+import com.jora.toyrobot.commands.RightCommand;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,7 +14,7 @@ public class ToyRobotTest {
         ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), null);
 
         //when
-        Coordinate lastPosition = toyRobot.roamingAround("");
+        Coordinate lastPosition = toyRobot.roamingAround(null);
 
         //then
         Coordinate expectedPosition = new Coordinate(1,2);
@@ -25,7 +27,7 @@ public class ToyRobotTest {
         ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.North);
 
         //when
-        toyRobot.roamingAround("");
+        toyRobot.roamingAround(null);
 
         //then
         Direction expectedFace = Direction.North;
@@ -38,7 +40,7 @@ public class ToyRobotTest {
         ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.North);
 
         //when
-        Coordinate lastPosition = toyRobot.roamingAround("RIGHT");
+        Coordinate lastPosition = toyRobot.roamingAround(new RightCommand());
 
         //Then
         Coordinate expectedPosition = new Coordinate(2,2);
@@ -53,7 +55,7 @@ public class ToyRobotTest {
         ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.North);
 
         //when
-        Coordinate lastPosition = toyRobot.roamingAround("LEFT");
+        Coordinate lastPosition = toyRobot.roamingAround(new LeftCommand());
 
         //Then
         Coordinate expectedPosition = new Coordinate(0,2);

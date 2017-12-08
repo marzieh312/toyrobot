@@ -22,7 +22,8 @@ public enum Direction {
         public Direction turnRight() {
             return NORTH;
         }
-    }, SOUTH {
+    },
+    SOUTH {
         @Override
         public Direction turnLeft() {
             return EAST;
@@ -32,7 +33,8 @@ public enum Direction {
         public Direction turnRight() {
             return WEST;
         }
-    }, EAST {
+    },
+    EAST {
         @Override
         public Direction turnLeft() {
             return NORTH;

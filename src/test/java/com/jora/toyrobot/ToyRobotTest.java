@@ -52,9 +52,26 @@ public class ToyRobotTest {
         Coordinate lastPosition = toyRobot.roamingAround(moves);
 
         //Then
-        Coordinate expectedPosition = new Coordinate(2,2);
+        Coordinate expectedPosition = new Coordinate(1,3);
         assertEquals(expectedPosition, lastPosition);
         Direction expectedFace = Direction.NORTH;
+        assertEquals(expectedFace, toyRobot.getFace());
+    }
+
+    @Test
+    void shouldMoveInEastDirection() {
+        //Given
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.EAST);
+
+        //when
+        List<Command> moves = new ArrayList<Command>();
+        moves.add(new MoveCommand());
+        Coordinate lastPosition = toyRobot.roamingAround(moves);
+
+        //Then
+        Coordinate expectedPosition = new Coordinate(2,2);
+        assertEquals(expectedPosition, lastPosition);
+        Direction expectedFace = Direction.EAST;
         assertEquals(expectedFace, toyRobot.getFace());
     }
 

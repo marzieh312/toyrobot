@@ -21,7 +21,14 @@ public class ToyRobot {
     }
 
     public void moveOneStep() {
-        this.coordinate = new Coordinate(this.coordinate.getX() + 1, this.coordinate.getY());
+        switch (direction) {
+            case EAST:
+                this.coordinate = new Coordinate(this.coordinate.getX() + 1, this.coordinate.getY());
+                break;
+            case NORTH:
+                this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY() + 1);
+                break;
+        }
     }
 
     public Direction getFace() {

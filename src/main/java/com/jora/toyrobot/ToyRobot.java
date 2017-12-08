@@ -2,6 +2,8 @@ package com.jora.toyrobot;
 
 import com.jora.toyrobot.commands.Command;
 
+import java.util.List;
+
 public class ToyRobot {
     private Coordinate coordinate;
     private Direction direction;
@@ -11,18 +13,14 @@ public class ToyRobot {
         this.direction = direction;
     }
 
-    public Coordinate roamingAround(Command command) {
-        if(command != null) {
+    public Coordinate roamingAround(List<Command> commands) {
+        for(Command command: commands) {
             command.execute(this);
         }
         return this.coordinate;
     }
 
-    public void moveLeftOneStep() {
-        this.coordinate = new Coordinate(this.coordinate.getX() - 1, this.coordinate.getY());
-    }
-
-    public void moveRightOneStep() {
+    public void moveOneStep() {
         this.coordinate = new Coordinate(this.coordinate.getX() + 1, this.coordinate.getY());
     }
 
@@ -30,4 +28,7 @@ public class ToyRobot {
         return direction;
     }
 
+    public void rotateLeft() {
+        this.direction = this.direction.rotateLeft();
+    }
 }

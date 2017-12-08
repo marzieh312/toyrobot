@@ -29,6 +29,6 @@ public class ToyRobot {
     }
 
     public void rotateLeft() {
-        this.direction = this.direction.rotateLeft();
+        this.direction = this.direction.turnLeft();
     }
 }

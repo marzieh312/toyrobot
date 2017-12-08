@@ -7,30 +7,30 @@ import static org.junit.jupiter.api.Assertions.*;
 class DirectionTest {
 
     @Test
-    void shouldFaceWestWhenRotateLeftFromNorth() {
-        Direction currentDirection = Direction.NORTH;
-        Direction rotatedDirection = currentDirection.rotateLeft();
+    void shouldSeeWestWhenTurnLeftFromNorth() {
+        Direction north = Direction.NORTH;
+        Direction rotatedDirection = north.turnLeft();
         assertEquals(Direction.WEST, rotatedDirection);
     }
 
     @Test
-    void shouldFaceSouthWhenRotateLeftFromWest() {
-        Direction currentDirection = Direction.WEST;
-        Direction rotatedDirection = currentDirection.rotateLeft();
+    void shouldSeeSouthWhenTurnLeftFromWest() {
+        Direction west = Direction.WEST;
+        Direction rotatedDirection = west.turnLeft();
         assertEquals(Direction.SOUTH, rotatedDirection);
     }
 
     @Test
-    void shouldFaceEastWhenRotateLeftFromSouth() {
-        Direction currentDirection = Direction.SOUTH;
-        Direction rotatedDirection = currentDirection.rotateLeft();
+    void shouldSeeEastWhenTurnLeftFromSouth() {
+        Direction south = Direction.SOUTH;
+        Direction rotatedDirection = south.turnLeft();
         assertEquals(Direction.EAST, rotatedDirection);
     }
 
     @Test
-    void shouldFaceNorthWhenRotateLeftFromEast() {
-        Direction currentDirection = Direction.EAST;
-        Direction rotatedDirection = currentDirection.rotateLeft();
+    void shouldSeeNorthWhenTurnLeftFromEast() {
+        Direction east = Direction.EAST;
+        Direction rotatedDirection = east.turnLeft();
         assertEquals(Direction.NORTH, rotatedDirection);
     }
 }

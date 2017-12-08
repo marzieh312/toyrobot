@@ -4,6 +4,7 @@ package com.jora.toyrobot;
 import com.jora.toyrobot.commands.Command;
 import com.jora.toyrobot.commands.MoveCommand;
 import com.jora.toyrobot.commands.RotateLeftCommand;
+import com.jora.toyrobot.commands.RotateRightCommand;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -71,6 +72,23 @@ public class ToyRobotTest {
         Coordinate expectedPosition = new Coordinate(1,2);
         assertEquals(expectedPosition, lastPosition);
         Direction expectedFace = Direction.WEST;
+        assertEquals(expectedFace, toyRobot.getFace());
+    }
+
+    @Test
+    void shouldRotateRight() {
+        //Given
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH);
+
+        //when
+        List<Command> commands = new ArrayList<Command>();
+        commands.add(new RotateRightCommand());
+        Coordinate lastPosition = toyRobot.roamingAround(commands);
+
+        //Then
+        Coordinate expectedPosition = new Coordinate(1,2);
+        assertEquals(expectedPosition, lastPosition);
+        Direction expectedFace = Direction.EAST;
         assertEquals(expectedFace, toyRobot.getFace());
     }
 

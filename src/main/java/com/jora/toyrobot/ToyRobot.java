@@ -31,4 +31,8 @@ public class ToyRobot {
     public void rotateLeft() {
         this.direction = this.direction.turnLeft();
     }
+
+    public void rotateRight() {
+        this.direction = this.direction.turnRight();
+    }
 }

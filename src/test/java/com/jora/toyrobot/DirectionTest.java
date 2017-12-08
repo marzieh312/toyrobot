@@ -33,4 +33,32 @@ class DirectionTest {
         Direction rotatedDirection = east.turnLeft();
         assertEquals(Direction.NORTH, rotatedDirection);
     }
+
+    @Test
+    void shouldSeeNorthWhenTurnRightFromWest() {
+        Direction west = Direction.WEST;
+        Direction rotatedDirection = west.turnRight();
+        assertEquals(Direction.NORTH, rotatedDirection);
+    }
+
+    @Test
+    void shouldSeeEastWhenTurnRightFromNorth() {
+        Direction west = Direction.NORTH;
+        Direction rotatedDirection = west.turnRight();
+        assertEquals(Direction.EAST, rotatedDirection);
+    }
+
+    @Test
+    void shouldSeeSouthWhenTurnRightFromEast() {
+        Direction west = Direction.EAST;
+        Direction rotatedDirection = west.turnRight();
+        assertEquals(Direction.SOUTH, rotatedDirection);
+    }
+
+    @Test
+    void shouldSeeWestWhenTurnRightFromSouth() {
+        Direction west = Direction.SOUTH;
+        Direction rotatedDirection = west.turnRight();
+        assertEquals(Direction.WEST, rotatedDirection);
+    }
 }

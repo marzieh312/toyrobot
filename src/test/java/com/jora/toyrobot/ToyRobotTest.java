@@ -23,7 +23,7 @@ public class ToyRobotTest {
         Coordinate lastPosition = toyRobot.roamingAround(moves);
 
         //then
-        Coordinate expectedPosition = new Coordinate(1,2);
+        Coordinate expectedPosition = new Coordinate(1, 2);
         assertEquals(expectedPosition, lastPosition);
     }
 
@@ -52,7 +52,7 @@ public class ToyRobotTest {
         Coordinate lastPosition = toyRobot.roamingAround(moves);
 
         //Then
-        Coordinate expectedPosition = new Coordinate(1,3);
+        Coordinate expectedPosition = new Coordinate(1, 3);
         assertEquals(expectedPosition, lastPosition);
         Direction expectedFace = Direction.NORTH;
         assertEquals(expectedFace, toyRobot.getFace());
@@ -69,7 +69,7 @@ public class ToyRobotTest {
         Coordinate lastPosition = toyRobot.roamingAround(moves);
 
         //Then
-        Coordinate expectedPosition = new Coordinate(2,2);
+        Coordinate expectedPosition = new Coordinate(2, 2);
         assertEquals(expectedPosition, lastPosition);
         Direction expectedFace = Direction.EAST;
         assertEquals(expectedFace, toyRobot.getFace());
@@ -86,7 +86,7 @@ public class ToyRobotTest {
         Coordinate lastPosition = toyRobot.roamingAround(commands);
 
         //Then
-        Coordinate expectedPosition = new Coordinate(1,2);
+        Coordinate expectedPosition = new Coordinate(1, 2);
         assertEquals(expectedPosition, lastPosition);
         Direction expectedFace = Direction.WEST;
         assertEquals(expectedFace, toyRobot.getFace());
@@ -103,10 +103,49 @@ public class ToyRobotTest {
         Coordinate lastPosition = toyRobot.roamingAround(commands);
 
         //Then
-        Coordinate expectedPosition = new Coordinate(1,2);
+        Coordinate expectedPosition = new Coordinate(1, 2);
         assertEquals(expectedPosition, lastPosition);
         Direction expectedFace = Direction.EAST;
         assertEquals(expectedFace, toyRobot.getFace());
     }
 
+    @Test
+    void shouldMoveOneStepInNorthDirection() {
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH);
+
+        toyRobot.moveOneStep();
+
+        assertEquals(Direction.NORTH, toyRobot.getFace());
+        assertEquals(new Coordinate(1, 3), toyRobot.getPosition());
+    }
+
+    @Test
+    void shouldMoveOneStepInEastDirection() {
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.EAST);
+
+        toyRobot.moveOneStep();
+
+        assertEquals(Direction.EAST, toyRobot.getFace());
+        assertEquals(new Coordinate(2, 2), toyRobot.getPosition());
+    }
+
+    @Test
+    void shouldMoveOneStepInWestDirection() {
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.WEST);
+
+        toyRobot.moveOneStep();
+
+        assertEquals(Direction.WEST, toyRobot.getFace());
+        assertEquals(new Coordinate(0, 2), toyRobot.getPosition());
+    }
+
+    @Test
+    void shouldMoveOneStepInSouthDirection() {
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.SOUTH);
+
+        toyRobot.moveOneStep();
+
+        assertEquals(Direction.SOUTH, toyRobot.getFace());
+        assertEquals(new Coordinate(1, 1), toyRobot.getPosition());
+    }
 }

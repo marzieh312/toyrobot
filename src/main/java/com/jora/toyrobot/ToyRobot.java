@@ -5,61 +5,44 @@ import com.jora.toyrobot.commands.Command;
 import java.util.List;
 
 public class ToyRobot {
-    private Coordinate coordinate;
     private FiveUnitsTableTop tableTop;
-    private Direction direction;
+    private Coordinate currentPosition;
+    private Direction currentDirection;
 
-    public ToyRobot(Coordinate coordinate, Direction direction, FiveUnitsTableTop tableTop) {
-        this.coordinate = coordinate;
+    public ToyRobot(Coordinate currentPosition, Direction currentDirection, FiveUnitsTableTop tableTop) {
+        this.currentPosition = currentPosition;
         this.tableTop = tableTop;
-        this.direction = direction;
+        this.currentDirection = currentDirection;
     }
 
     public Coordinate roamingAround(List<Command> commands) {
         for(Command command: commands) {
             command.execute(this);
         }
-        return this.coordinate;
+        return this.currentPosition;
     }
 
     public void moveOneStep() {
-        // check for invalid direction
-        Coordinate newPosition = new Coordinate(0, 0);
-        switch (direction) {
-            case EAST:
-                newPosition = new Coordinate(this.coordinate.getX() + 1, this.coordinate.getY());
-                break;
-
-            case WEST:
-                newPosition = new Coordinate(this.coordinate.getX() - 1, this.coordinate.getY());
-                break;
-
-            case NORTH:
-                newPosition = new Coordinate(this.coordinate.getX(), this.coordinate.getY() + 1);
-                break;
-
-            case SOUTH:
-                newPosition = new Coordinate(this.coordinate.getX(), this.coordinate.getY() - 1);
-                break;
-        }
+        Coordinate newPosition = this.currentPosition.getNewPosition(currentDirection.getDeltaX(),
+                currentDirection.getDeltaY());
         if(tableTop.insideTableBorder(newPosition)) {
-            this.coordinate = newPosition;
+            this.currentPosition = newPosition;
         }
     }
 
     public Direction getFace() {
-        return direction;
+        return currentDirection;
     }
 
     public void rotateLeft() {
-        this.direction = this.direction.turnLeft();
+        this.currentDirection = this.currentDirection.turnLeft();
     }
 
     public void rotateRight() {
-        this.direction = this.direction.turnRight();
+        this.currentDirection = this.currentDirection.turnRight();
     }
 
     public Coordinate getPosition() {
-        return this.coordinate;
+        return this.currentPosition;
     }
 }

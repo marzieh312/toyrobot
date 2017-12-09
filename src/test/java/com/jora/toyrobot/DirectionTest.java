@@ -61,4 +61,52 @@ class DirectionTest {
         Direction rotatedDirection = west.turnRight();
         assertEquals(Direction.WEST, rotatedDirection);
     }
+
+    @Test
+    void shouldReturnOneForDeltaXWhenFacingEast() {
+        Direction east = Direction.EAST;
+        assertEquals(1, east.getDeltaX());
+    }
+
+    @Test
+    void shouldReturnZeroForDeltaYWhenFacingEast() {
+        Direction east = Direction.EAST;
+        assertEquals(0, east.getDeltaY());
+    }
+
+    @Test
+    void shouldReturnMinusOneForDeltaXWhenFacingWest() {
+        Direction west = Direction.WEST;
+        assertEquals(-1, west.getDeltaX());
+    }
+
+    @Test
+    void shouldReturnZeroForDeltaYWhenFacingWEST() {
+        Direction west = Direction.WEST;
+        assertEquals(0, west.getDeltaY());
+    }
+
+    @Test
+    void shouldReturnZeroForDeltaXWhenFacingNorth() {
+        Direction north = Direction.NORTH;
+        assertEquals(0, north.getDeltaX());
+    }
+
+    @Test
+    void shouldReturnZeroForDeltaXWhenFacingSouth() {
+        Direction south = Direction.SOUTH;
+        assertEquals(0, south.getDeltaX());
+    }
+
+    @Test
+    void shouldReturnOneForDeltaYWhenFacingNorth() {
+        Direction north = Direction.NORTH;
+        assertEquals(1, north.getDeltaY());
+    }
+
+    @Test
+    void shouldReturnMinusOneForDeltaYWhenFacingSouth() {
+        Direction south = Direction.SOUTH;
+        assertEquals(-1, south.getDeltaY());
+    }
 }

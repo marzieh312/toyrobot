@@ -34,4 +34,8 @@ public class Coordinate {
     public int getX() {
         return x;
     }
+
+    public Coordinate getNewPosition(int deltaX, int deltaY) {
+        return new Coordinate(x + deltaX, y + deltaY);
+    }
 }

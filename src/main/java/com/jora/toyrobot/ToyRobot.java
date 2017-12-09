@@ -6,10 +6,12 @@ import java.util.List;
 
 public class ToyRobot {
     private Coordinate coordinate;
+    private FiveUnitsTableTop tableTop;
     private Direction direction;
 
-    public ToyRobot(Coordinate coordinate, Direction direction) {
+    public ToyRobot(Coordinate coordinate, Direction direction, FiveUnitsTableTop tableTop) {
         this.coordinate = coordinate;
+        this.tableTop = tableTop;
         this.direction = direction;
     }
 
@@ -21,22 +23,27 @@ public class ToyRobot {
     }
 
     public void moveOneStep() {
+        // check for invalid direction
+        Coordinate newPosition = new Coordinate(0, 0);
         switch (direction) {
             case EAST:
-                this.coordinate = new Coordinate(this.coordinate.getX() + 1, this.coordinate.getY());
+                newPosition = new Coordinate(this.coordinate.getX() + 1, this.coordinate.getY());
                 break;
 
             case WEST:
-                this.coordinate = new Coordinate(this.coordinate.getX() - 1, this.coordinate.getY());
+                newPosition = new Coordinate(this.coordinate.getX() - 1, this.coordinate.getY());
                 break;
 
             case NORTH:
-                this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY() + 1);
+                newPosition = new Coordinate(this.coordinate.getX(), this.coordinate.getY() + 1);
                 break;
 
             case SOUTH:
-                this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY() - 1);
+                newPosition = new Coordinate(this.coordinate.getX(), this.coordinate.getY() - 1);
                 break;
+        }
+        if(tableTop.insideTableBorder(newPosition)) {
+            this.coordinate = newPosition;
         }
     }
 

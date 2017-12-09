@@ -5,6 +5,7 @@ import com.jora.toyrobot.commands.Command;
 import com.jora.toyrobot.commands.MoveCommand;
 import com.jora.toyrobot.commands.RotateLeftCommand;
 import com.jora.toyrobot.commands.RotateRightCommand;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ public class ToyRobotTest {
     @Test
     public void shouldPlaceRobotInInitialPlace() throws Exception {
         //Given
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), null);
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), null, tableTop);
 
         //when
         List<Command> moves = new ArrayList<Command>();
@@ -30,7 +32,8 @@ public class ToyRobotTest {
     @Test
     void shouldKeepFaceWhenThereIsNoDirectionMove() {
         //Given
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH);
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH, tableTop);
 
         //when
         List<Command> moves = new ArrayList<Command>();
@@ -44,7 +47,8 @@ public class ToyRobotTest {
     @Test
     void shouldMoveInNorthDirection() {
         //Given
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH);
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH, tableTop);
 
         //when
         List<Command> moves = new ArrayList<Command>();
@@ -61,7 +65,8 @@ public class ToyRobotTest {
     @Test
     void shouldMoveInEastDirection() {
         //Given
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.EAST);
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.EAST, tableTop);
 
         //when
         List<Command> moves = new ArrayList<Command>();
@@ -78,7 +83,8 @@ public class ToyRobotTest {
     @Test
     void shouldRotateLeft() {
         //Given
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH);
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH, tableTop);
 
         //when
         List<Command> commands = new ArrayList<Command>();
@@ -95,7 +101,8 @@ public class ToyRobotTest {
     @Test
     void shouldRotateRight() {
         //Given
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH);
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH, tableTop);
 
         //when
         List<Command> commands = new ArrayList<Command>();
@@ -111,7 +118,8 @@ public class ToyRobotTest {
 
     @Test
     void shouldMoveOneStepInNorthDirection() {
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH);
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH, tableTop);
 
         toyRobot.moveOneStep();
 
@@ -121,7 +129,8 @@ public class ToyRobotTest {
 
     @Test
     void shouldMoveOneStepInEastDirection() {
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.EAST);
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.EAST, tableTop);
 
         toyRobot.moveOneStep();
 
@@ -131,7 +140,8 @@ public class ToyRobotTest {
 
     @Test
     void shouldMoveOneStepInWestDirection() {
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.WEST);
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.WEST, tableTop);
 
         toyRobot.moveOneStep();
 
@@ -141,7 +151,8 @@ public class ToyRobotTest {
 
     @Test
     void shouldMoveOneStepInSouthDirection() {
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.SOUTH);
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.SOUTH, tableTop);
 
         toyRobot.moveOneStep();
 
@@ -151,7 +162,8 @@ public class ToyRobotTest {
 
     @Test
     void shouldRotateAndMove() {
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.EAST);
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.EAST, tableTop);
 
         List<Command> commands = new ArrayList<Command>();
         commands.add(new MoveCommand());
@@ -163,5 +175,16 @@ public class ToyRobotTest {
 
         assertEquals(new Coordinate(3, 3), lastPosition);
         assertEquals(Direction.NORTH, toyRobot.getFace());
+    }
+
+    @Test
+    void shouldNotFallOfTableWhenMoving() {
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(0, 0), Direction.SOUTH, tableTop);
+
+        toyRobot.moveOneStep();
+
+        assertEquals(Direction.SOUTH, toyRobot.getFace());
+        assertEquals(new Coordinate(0, 0), toyRobot.getPosition());
     }
 }

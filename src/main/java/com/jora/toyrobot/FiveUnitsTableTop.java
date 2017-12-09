@@ -1,8 +1,8 @@
 package com.jora.toyrobot;
 
 public class FiveUnitsTableTop {
-    Coordinate northEastCorner = new Coordinate(4, 4);
-    Coordinate southWestCorner = new Coordinate(0, 0);
+    private Coordinate northEastCorner = new Coordinate(4, 4);
+    private Coordinate southWestCorner = new Coordinate(0, 0);
 
 
     public boolean insideTableBorder(Coordinate coordinate) {

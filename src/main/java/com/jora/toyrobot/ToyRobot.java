@@ -25,12 +25,15 @@ public class ToyRobot {
             case EAST:
                 this.coordinate = new Coordinate(this.coordinate.getX() + 1, this.coordinate.getY());
                 break;
+
             case WEST:
                 this.coordinate = new Coordinate(this.coordinate.getX() - 1, this.coordinate.getY());
                 break;
+
             case NORTH:
                 this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY() + 1);
                 break;
+
             case SOUTH:
                 this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY() - 1);
                 break;

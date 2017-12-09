@@ -148,4 +148,20 @@ public class ToyRobotTest {
         assertEquals(Direction.SOUTH, toyRobot.getFace());
         assertEquals(new Coordinate(1, 1), toyRobot.getPosition());
     }
+
+    @Test
+    void shouldRotateAndMove() {
+        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.EAST);
+
+        List<Command> commands = new ArrayList<Command>();
+        commands.add(new MoveCommand());
+        commands.add(new MoveCommand());
+        commands.add(new RotateLeftCommand());
+        commands.add(new MoveCommand());
+        Coordinate lastPosition = toyRobot.roamingAround(commands);
+
+
+        assertEquals(new Coordinate(3, 3), lastPosition);
+        assertEquals(Direction.NORTH, toyRobot.getFace());
+    }
 }

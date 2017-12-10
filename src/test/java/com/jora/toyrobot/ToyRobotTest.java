@@ -8,9 +8,9 @@ import com.jora.toyrobot.commands.RotateLeftCommand;
 import com.jora.toyrobot.commands.RotateRightCommand;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.Mockito.*;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -20,45 +20,15 @@ import java.util.List;
 
 
 public class ToyRobotTest {
-
-    @Test
-    public void shouldPlaceRobotInInitialPlace() throws Exception {
-        //Given
-        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), null, tableTop);
-
-        //when
-        List<Command> moves = new ArrayList<Command>();
-        Coordinate lastPosition = toyRobot.roamingAround(moves);
-
-        //then
-        Coordinate expectedPosition = new Coordinate(1, 2);
-        assertEquals(expectedPosition, lastPosition);
-    }
-
-    @Test
-    public void shouldKeepFaceWhenThereIsNoDirectionMove() {
-        //Given
-        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH, tableTop);
-
-        //when
-        List<Command> moves = new ArrayList<Command>();
-        toyRobot.roamingAround(moves);
-
-        //then
-        Direction expectedFace = Direction.NORTH;
-        assertEquals(expectedFace, toyRobot.getFace());
-    }
-
-    @Test
+   @Test
     public void shouldMoveInNorthDirection() {
         //Given
         FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH, tableTop);
+        ToyRobot toyRobot = new ToyRobot(tableTop);
 
         //when
         List<Command> moves = new ArrayList<Command>();
+        moves.add(new PlaceCommand(new Coordinate(1, 2), Direction.NORTH));
         moves.add(new MoveCommand());
         Coordinate lastPosition = toyRobot.roamingAround(moves);
 
@@ -73,10 +43,11 @@ public class ToyRobotTest {
     public void shouldMoveInEastDirection() {
         //Given
         FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.EAST, tableTop);
+        ToyRobot toyRobot = new ToyRobot(tableTop);
 
         //when
         List<Command> moves = new ArrayList<Command>();
+        moves.add(new PlaceCommand(new Coordinate(1, 2), Direction.EAST));
         moves.add(new MoveCommand());
         Coordinate lastPosition = toyRobot.roamingAround(moves);
 
@@ -91,10 +62,11 @@ public class ToyRobotTest {
     public void shouldRotateLeft() {
         //Given
         FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH, tableTop);
+        ToyRobot toyRobot = new ToyRobot(tableTop);
 
         //when
         List<Command> commands = new ArrayList<Command>();
+        commands.add(new PlaceCommand(new Coordinate(1, 2), Direction.NORTH));
         commands.add(new RotateLeftCommand());
         Coordinate lastPosition = toyRobot.roamingAround(commands);
 
@@ -109,10 +81,11 @@ public class ToyRobotTest {
     public void shouldRotateRight() {
         //Given
         FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH, tableTop);
+        ToyRobot toyRobot = new ToyRobot(tableTop);
 
         //when
         List<Command> commands = new ArrayList<Command>();
+        commands.add(new PlaceCommand(new Coordinate(1, 2), Direction.NORTH));
         commands.add(new RotateRightCommand());
         Coordinate lastPosition = toyRobot.roamingAround(commands);
 
@@ -127,7 +100,7 @@ public class ToyRobotTest {
     public void shouldPlaceRobotInSpecifiedPositionAndDirectionOnTable() {
         //Given
         FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH, tableTop);
+        ToyRobot toyRobot = new ToyRobot(tableTop);
 
         //when
         List<Command> commands = new ArrayList<Command>();
@@ -143,7 +116,7 @@ public class ToyRobotTest {
     public void shouldNotPlaceRobotIfNewPositionNotInsideTableBorders() {
         //Given
         FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH, tableTop);
+        ToyRobot toyRobot = new ToyRobot(tableTop);
 
         //when
         List<Command> commands = new ArrayList<Command>();
@@ -151,62 +124,17 @@ public class ToyRobotTest {
         Coordinate lastPosition = toyRobot.roamingAround(commands);
 
         //Then
-        assertEquals(new Coordinate(1, 2), lastPosition);
-        assertEquals(Direction.NORTH, toyRobot.getFace());
-    }
-
-
-
-    @Test
-    public void shouldMoveOneStepInNorthDirection() {
-        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.NORTH, tableTop);
-
-        toyRobot.moveOneStep();
-
-        assertEquals(Direction.NORTH, toyRobot.getFace());
-        assertEquals(new Coordinate(1, 3), toyRobot.getPosition());
-    }
-
-    @Test
-    public void shouldMoveOneStepInEastDirection() {
-        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.EAST, tableTop);
-
-        toyRobot.moveOneStep();
-
-        assertEquals(Direction.EAST, toyRobot.getFace());
-        assertEquals(new Coordinate(2, 2), toyRobot.getPosition());
-    }
-
-    @Test
-    public void shouldMoveOneStepInWestDirection() {
-        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.WEST, tableTop);
-
-        toyRobot.moveOneStep();
-
-        assertEquals(Direction.WEST, toyRobot.getFace());
-        assertEquals(new Coordinate(0, 2), toyRobot.getPosition());
-    }
-
-    @Test
-    public void shouldMoveOneStepInSouthDirection() {
-        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.SOUTH, tableTop);
-
-        toyRobot.moveOneStep();
-
-        assertEquals(Direction.SOUTH, toyRobot.getFace());
-        assertEquals(new Coordinate(1, 1), toyRobot.getPosition());
+        assertNull(lastPosition);
+        assertNull(toyRobot.getFace());
     }
 
     @Test
     public void shouldRotateAndMove() {
         FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(1, 2), Direction.EAST, tableTop);
+        ToyRobot toyRobot = new ToyRobot(tableTop);
 
         List<Command> commands = new ArrayList<Command>();
+        commands.add(new PlaceCommand(new Coordinate(1, 2), Direction.EAST));
         commands.add(new MoveCommand());
         commands.add(new MoveCommand());
         commands.add(new RotateLeftCommand());
@@ -221,9 +149,14 @@ public class ToyRobotTest {
     @Test
     public void shouldNotFallOfTableWhenMoving() {
         FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(new Coordinate(0, 0), Direction.SOUTH, tableTop);
+        ToyRobot toyRobot = new ToyRobot(tableTop);
 
-        toyRobot.moveOneStep();
+        List<Command> commands = new ArrayList<Command>();
+        commands.add(new PlaceCommand(new Coordinate(0, 0), Direction.SOUTH));
+        commands.add(new MoveCommand());
+
+        toyRobot.roamingAround(commands);
+
 
         assertEquals(Direction.SOUTH, toyRobot.getFace());
         assertEquals(new Coordinate(0, 0), toyRobot.getPosition());
@@ -232,7 +165,7 @@ public class ToyRobotTest {
     @Test
     public void shouldIgnoreAllTheCommandsBeforeFirstPlaceCommand() throws Exception {
         FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
-        ToyRobot toyRobot = new ToyRobot(null, null, tableTop);
+        ToyRobot toyRobot = new ToyRobot(tableTop);
 
         List<Command> commands = new ArrayList<Command>();
         Command moveCommand = Mockito.spy(new MoveCommand());

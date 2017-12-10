@@ -12,10 +12,8 @@ public class ToyRobot {
     private ToyRobotPrinter printer = new ToyRobotPrinter();
 
 
-    public ToyRobot(Coordinate currentPosition, Direction currentDirection, FiveUnitsTableTop tableTop) {
-        this.currentPosition = currentPosition;
+    public ToyRobot(FiveUnitsTableTop tableTop) {
         this.tableTop = tableTop;
-        this.currentDirection = currentDirection;
     }
 
     public Coordinate roamingAround(List<Command> commands) {

@@ -20,13 +20,19 @@ public class ToyRobot {
 
     public Coordinate roamingAround(List<Command> commands) {
         for(Command command: commands) {
-            if(command instanceof PlaceCommand) {
-                command.execute(this);
-            } else if(currentDirection != null && currentPosition != null) {
+            if(canExecuteCommand(command)) {
                 command.execute(this);
             }
         }
         return this.currentPosition;
+    }
+
+    private boolean canExecuteCommand(Command command) {
+        return command instanceof PlaceCommand || robotIsPlaced();
+    }
+
+    private boolean robotIsPlaced() {
+        return currentDirection != null && currentPosition != null;
     }
 
     public void moveOneStep() {

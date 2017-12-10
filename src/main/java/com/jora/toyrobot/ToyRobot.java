@@ -1,6 +1,7 @@
 package com.jora.toyrobot;
 
 import com.jora.toyrobot.commands.Command;
+import com.jora.toyrobot.commands.PlaceCommand;
 
 import java.util.List;
 
@@ -19,7 +20,11 @@ public class ToyRobot {
 
     public Coordinate roamingAround(List<Command> commands) {
         for(Command command: commands) {
-            command.execute(this);
+            if(command instanceof PlaceCommand) {
+                command.execute(this);
+            } else if(currentDirection != null && currentPosition != null) {
+                command.execute(this);
+            }
         }
         return this.currentPosition;
     }

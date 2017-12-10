@@ -7,8 +7,13 @@ import com.jora.toyrobot.commands.PlaceCommand;
 import com.jora.toyrobot.commands.RotateLeftCommand;
 import com.jora.toyrobot.commands.RotateRightCommand;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.Mockito.*;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -222,5 +227,29 @@ public class ToyRobotTest {
 
         assertEquals(Direction.SOUTH, toyRobot.getFace());
         assertEquals(new Coordinate(0, 0), toyRobot.getPosition());
+    }
+
+    @Test
+    public void shouldIgnoreAllTheCommandsBeforeFirstPlaceCommand() throws Exception {
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(null, null, tableTop);
+
+        List<Command> commands = new ArrayList<Command>();
+        Command moveCommand = Mockito.spy(new MoveCommand());
+        Command rotateLeftCommand = Mockito.spy(new RotateLeftCommand());
+        Command placeCommand = Mockito.spy(new PlaceCommand(new Coordinate(3, 4), Direction.SOUTH));
+
+        commands.add(moveCommand);
+        commands.add(rotateLeftCommand);
+        commands.add(placeCommand);
+
+        Coordinate lastPosition = toyRobot.roamingAround(commands);
+
+        verify(moveCommand, never()).execute(toyRobot);
+        verify(rotateLeftCommand, never()).execute(toyRobot);
+        verify(placeCommand, times(1)).execute(toyRobot);
+
+        assertEquals(new Coordinate(3, 4), lastPosition);
+        assertEquals(Direction.SOUTH, toyRobot.getFace());
     }
 }

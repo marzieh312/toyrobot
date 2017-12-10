@@ -8,6 +8,8 @@ public class ToyRobot {
     private FiveUnitsTableTop tableTop;
     private Coordinate currentPosition;
     private Direction currentDirection;
+    private ToyRobotPrinter printer = new ToyRobotPrinter();
+
 
     public ToyRobot(Coordinate currentPosition, Direction currentDirection, FiveUnitsTableTop tableTop) {
         this.currentPosition = currentPosition;
@@ -44,5 +46,16 @@ public class ToyRobot {
 
     public Coordinate getPosition() {
         return this.currentPosition;
+    }
+
+    public void place(Coordinate newPosition, Direction newDirection) {
+        if(tableTop.insideTableBorder(newPosition)) {
+            this.currentPosition = newPosition;
+            this.currentDirection= newDirection;
+        }
+    }
+
+    public void report() {
+        printer.print(this.currentPosition, this.currentDirection);
     }
 }

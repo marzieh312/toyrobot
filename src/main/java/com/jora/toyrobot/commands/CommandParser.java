@@ -3,7 +3,9 @@ package com.jora.toyrobot.commands;
 import com.jora.toyrobot.Coordinate;
 import com.jora.toyrobot.Direction;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CommandParser {
@@ -13,6 +15,15 @@ public class CommandParser {
         put("MOVE", new MoveCommand());
         put("REPORT", new ReportCommand());
     }};
+
+
+    public List<Command> parse(List<String> commandLines) throws Exception {
+        List<Command> commands = new ArrayList<>();
+        for(String command: commandLines) {
+            commands.add(parse(command));
+        }
+        return commands;
+    }
 
     public Command parse(String commandStr) throws Exception {
         if(isPlaceCommand(commandStr)) {

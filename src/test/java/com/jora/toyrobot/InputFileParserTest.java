@@ -6,10 +6,10 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class ToyRobotParserTest {
+public class InputFileParserTest {
     @Test
     public void shouldReturnCommands() throws Exception {
-        ToyRobotParser parser = new ToyRobotParser();
+        InputFileParser parser = new InputFileParser();
 
         List<String> commands = parser.parse("valid-input.txt");
 
@@ -20,7 +20,7 @@ public class ToyRobotParserTest {
 
     @Test
     public void shouldReturnEmptyListIfFileEmpty() throws Exception {
-        ToyRobotParser parser = new ToyRobotParser();
+        InputFileParser parser = new InputFileParser();
 
         List<String> commands = parser.parse("empty-input.txt");
 
@@ -29,14 +29,14 @@ public class ToyRobotParserTest {
 
     @Test(expected = Exception.class)
     public void shouldThrowExceptionIfFileDoesNotExist() throws Exception{
-        ToyRobotParser parser = new ToyRobotParser();
+        InputFileParser parser = new InputFileParser();
 
         parser.parse("non-existent.txt");
     }
 
     @Test(expected = Exception.class)
     public void shouldThrowExceptionIfInvalidInputFileName() throws Exception{
-        ToyRobotParser parser = new ToyRobotParser();
+        InputFileParser parser = new InputFileParser();
 
         parser.parse(null);
     }

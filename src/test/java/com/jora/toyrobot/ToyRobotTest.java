@@ -185,4 +185,28 @@ public class ToyRobotTest {
         assertEquals(new Coordinate(3, 4), lastPosition);
         assertEquals(Direction.SOUTH, toyRobot.getFace());
     }
+
+    @Test
+    public void shouldNotPlaceRobotIfNewPositionIsOutOfTableBorder() {
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(tableTop);
+
+        toyRobot.place(new Coordinate(5, 5), Direction.EAST);
+
+        assertNull(toyRobot.getPosition());
+        assertNull(toyRobot.getFace());
+
+    }
+
+    @Test
+    public void shouldNotMoveIfNewPositionIsOutOfTableBorder() throws Exception {
+        FiveUnitsTableTop tableTop = new FiveUnitsTableTop();
+        ToyRobot toyRobot = new ToyRobot(tableTop);
+
+        toyRobot.place(new Coordinate(0, 0), Direction.WEST);
+        toyRobot.moveOneStep();
+
+        assertEquals(new Coordinate(0, 0), toyRobot.getPosition());
+        assertEquals(Direction.WEST, toyRobot.getFace());
+    }
 }

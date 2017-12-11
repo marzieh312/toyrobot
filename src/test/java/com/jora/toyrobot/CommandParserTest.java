@@ -9,11 +9,27 @@ import com.jora.toyrobot.commands.RotateLeftCommand;
 import com.jora.toyrobot.commands.RotateRightCommand;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 public class CommandParserTest {
     private CommandParser parser = new CommandParser();
+
+    @Test
+    public void shouldParseListOfCommands() throws Exception {
+        List<String> commands = new ArrayList<>();
+        commands.add("PLACE 0,0,NORTH");
+        commands.add("MOVE");
+
+        List<Command> listOfCommands = parser.parse(commands);
+        assertEquals(listOfCommands.size(), 2);
+        assertTrue(listOfCommands.get(0) instanceof PlaceCommand);
+        assertTrue(listOfCommands.get(1) instanceof MoveCommand);
+
+    }
 
     @Test
     public void shouldParsePlaceCommand() throws Exception {

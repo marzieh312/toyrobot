@@ -16,4 +16,22 @@ public class PlaceCommand implements Command {
     public void execute(ToyRobot toyRobot) {
         toyRobot.place(coordinate, direction);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PlaceCommand)) return false;
+
+        PlaceCommand that = (PlaceCommand) o;
+
+        if (coordinate != null ? !coordinate.equals(that.coordinate) : that.coordinate != null) return false;
+        return direction == that.direction;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = coordinate != null ? coordinate.hashCode() : 0;
+        result = 31 * result + (direction != null ? direction.hashCode() : 0);
+        return result;
+    }
 }

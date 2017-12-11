@@ -57,3 +57,7 @@ Output: 3,3,NORTH
 
 Deliverables:
 The source files, the test data and any test code.
+
+###Assumptions
+- throw exception and don't start the program if there is any command that is invalid. 
+- the parser is very restricted but robust. If there is exact requirement we can make it more flexible

@@ -1,6 +1,7 @@
-package com.jora.toyrobot;
+package com.jora.toyrobot.models;
 
 
+import com.jora.toyrobot.models.Direction;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -8,42 +9,42 @@ import static junit.framework.TestCase.assertEquals;
 class DirectionTest {
 
     @Test
-    void shouldSeeWestWhenTurnLeftFromNorth() {
+    public void shouldSeeWestWhenTurnLeftFromNorth() {
         Direction north = Direction.NORTH;
         Direction rotatedDirection = north.turnLeft();
         assertEquals(Direction.WEST, rotatedDirection);
     }
 
     @Test
-    void shouldSeeSouthWhenTurnLeftFromWest() {
+    public void shouldSeeSouthWhenTurnLeftFromWest() {
         Direction west = Direction.WEST;
         Direction rotatedDirection = west.turnLeft();
         assertEquals(Direction.SOUTH, rotatedDirection);
     }
 
     @Test
-    void shouldSeeEastWhenTurnLeftFromSouth() {
+    public void shouldSeeEastWhenTurnLeftFromSouth() {
         Direction south = Direction.SOUTH;
         Direction rotatedDirection = south.turnLeft();
         assertEquals(Direction.EAST, rotatedDirection);
     }
 
     @Test
-    void shouldSeeNorthWhenTurnLeftFromEast() {
+    public void shouldSeeNorthWhenTurnLeftFromEast() {
         Direction east = Direction.EAST;
         Direction rotatedDirection = east.turnLeft();
         assertEquals(Direction.NORTH, rotatedDirection);
     }
 
     @Test
-    void shouldSeeNorthWhenTurnRightFromWest() {
+    public void shouldSeeNorthWhenTurnRightFromWest() {
         Direction west = Direction.WEST;
         Direction rotatedDirection = west.turnRight();
         assertEquals(Direction.NORTH, rotatedDirection);
     }
 
     @Test
-    void shouldSeeEastWhenTurnRightFromNorth() {
+    public void shouldSeeEastWhenTurnRightFromNorth() {
         Direction west = Direction.NORTH;
         Direction rotatedDirection = west.turnRight();
         assertEquals(Direction.EAST, rotatedDirection);

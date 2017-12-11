@@ -1,4 +1,4 @@
-package com.jora.toyrobot;
+package com.jora.toyrobot.models;
 
 public enum Direction {
     NORTH {

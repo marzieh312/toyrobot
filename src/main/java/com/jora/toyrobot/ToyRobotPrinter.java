@@ -1,5 +1,8 @@
 package com.jora.toyrobot;
 
+import com.jora.toyrobot.models.Coordinate;
+import com.jora.toyrobot.models.Direction;
+
 public class ToyRobotPrinter {
     void print(Coordinate coordinate, Direction direction) {
         StringBuilder sb = new StringBuilder();

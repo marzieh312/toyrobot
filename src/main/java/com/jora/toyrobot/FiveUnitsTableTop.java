@@ -1,5 +1,7 @@
 package com.jora.toyrobot;
 
+import com.jora.toyrobot.models.Coordinate;
+
 public class FiveUnitsTableTop {
     private Coordinate northEastCorner = new Coordinate(4, 4);
     private Coordinate southWestCorner = new Coordinate(0, 0);

@@ -1,4 +1,4 @@
-package com.jora.toyrobot;
+package com.jora.toyrobot.models;
 
 public class Coordinate {
     private final int x;

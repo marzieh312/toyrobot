@@ -2,6 +2,8 @@ package com.jora.toyrobot;
 
 import com.jora.toyrobot.commands.Command;
 import com.jora.toyrobot.commands.PlaceCommand;
+import com.jora.toyrobot.models.Coordinate;
+import com.jora.toyrobot.models.Direction;
 
 import java.util.List;
 

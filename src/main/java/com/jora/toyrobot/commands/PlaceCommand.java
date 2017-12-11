@@ -1,7 +1,7 @@
 package com.jora.toyrobot.commands;
 
-import com.jora.toyrobot.Coordinate;
-import com.jora.toyrobot.Direction;
+import com.jora.toyrobot.models.Coordinate;
+import com.jora.toyrobot.models.Direction;
 import com.jora.toyrobot.ToyRobot;
 
 public class PlaceCommand implements Command {

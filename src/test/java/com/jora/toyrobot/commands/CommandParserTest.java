@@ -1,4 +1,4 @@
-package com.jora.toyrobot;
+package com.jora.toyrobot.commands;
 
 import com.jora.toyrobot.commands.Command;
 import com.jora.toyrobot.commands.CommandParser;

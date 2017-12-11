@@ -1,4 +1,4 @@
-package com.jora.toyrobot;
+package com.jora.toyrobot.models;
 
 import com.jora.toyrobot.models.Coordinate;
 

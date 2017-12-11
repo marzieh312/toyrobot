@@ -8,6 +8,7 @@ import com.jora.toyrobot.commands.RotateLeftCommand;
 import com.jora.toyrobot.commands.RotateRightCommand;
 import com.jora.toyrobot.models.Coordinate;
 import com.jora.toyrobot.models.Direction;
+import com.jora.toyrobot.models.FiveUnitsTableTop;
 import org.junit.Test;
 import org.mockito.Mockito;
 

@@ -4,6 +4,7 @@ import com.jora.toyrobot.commands.Command;
 import com.jora.toyrobot.commands.PlaceCommand;
 import com.jora.toyrobot.models.Coordinate;
 import com.jora.toyrobot.models.Direction;
+import com.jora.toyrobot.models.FiveUnitsTableTop;
 
 import java.util.List;
 

@@ -1,7 +1,9 @@
 group 'com.jora'
-version '1.0-SNAPSHOT'
+version '1.0.0'
 
 apply plugin: 'java'
+apply plugin:'application'
+mainClassName = "com.jora.toyrobot.StartHere"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -13,4 +15,17 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile "org.mockito:mockito-core:2.+"
+}
+
+test {
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat "full"
+    }
+}
+
+run {
+    if (project.hasProperty("f")) {
+        args(f)
+    }
 }

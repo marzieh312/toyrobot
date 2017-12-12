@@ -1,12 +1,11 @@
 package com.jora.toyrobot.models;
 
 
-import com.jora.toyrobot.models.Direction;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-class DirectionTest {
+public class DirectionTest {
 
     @Test
     public void shouldSeeWestWhenTurnLeftFromNorth() {
@@ -51,63 +50,63 @@ class DirectionTest {
     }
 
     @Test
-    void shouldSeeSouthWhenTurnRightFromEast() {
+    public void shouldSeeSouthWhenTurnRightFromEast() {
         Direction west = Direction.EAST;
         Direction rotatedDirection = west.turnRight();
         assertEquals(Direction.SOUTH, rotatedDirection);
     }
 
     @Test
-    void shouldSeeWestWhenTurnRightFromSouth() {
+    public void shouldSeeWestWhenTurnRightFromSouth() {
         Direction west = Direction.SOUTH;
         Direction rotatedDirection = west.turnRight();
         assertEquals(Direction.WEST, rotatedDirection);
     }
 
     @Test
-    void shouldReturnOneForDeltaXWhenFacingEast() {
+    public void shouldReturnOneForDeltaXWhenFacingEast() {
         Direction east = Direction.EAST;
         assertEquals(1, east.getDeltaX());
     }
 
     @Test
-    void shouldReturnZeroForDeltaYWhenFacingEast() {
+    public void shouldReturnZeroForDeltaYWhenFacingEast() {
         Direction east = Direction.EAST;
         assertEquals(0, east.getDeltaY());
     }
 
     @Test
-    void shouldReturnMinusOneForDeltaXWhenFacingWest() {
+    public void shouldReturnMinusOneForDeltaXWhenFacingWest() {
         Direction west = Direction.WEST;
         assertEquals(-1, west.getDeltaX());
     }
 
     @Test
-    void shouldReturnZeroForDeltaYWhenFacingWEST() {
+    public void shouldReturnZeroForDeltaYWhenFacingWEST() {
         Direction west = Direction.WEST;
         assertEquals(0, west.getDeltaY());
     }
 
     @Test
-    void shouldReturnZeroForDeltaXWhenFacingNorth() {
+    public void shouldReturnZeroForDeltaXWhenFacingNorth() {
         Direction north = Direction.NORTH;
         assertEquals(0, north.getDeltaX());
     }
 
     @Test
-    void shouldReturnZeroForDeltaXWhenFacingSouth() {
+    public void shouldReturnZeroForDeltaXWhenFacingSouth() {
         Direction south = Direction.SOUTH;
         assertEquals(0, south.getDeltaX());
     }
 
     @Test
-    void shouldReturnOneForDeltaYWhenFacingNorth() {
+    public void shouldReturnOneForDeltaYWhenFacingNorth() {
         Direction north = Direction.NORTH;
         assertEquals(1, north.getDeltaY());
     }
 
     @Test
-    void shouldReturnMinusOneForDeltaYWhenFacingSouth() {
+    public void shouldReturnMinusOneForDeltaYWhenFacingSouth() {
         Direction south = Direction.SOUTH;
         assertEquals(-1, south.getDeltaY());
     }

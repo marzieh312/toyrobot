@@ -1,8 +1,6 @@
 package com.jora.toyrobot.models;
 
 
-import com.jora.toyrobot.models.Coordinate;
-import com.jora.toyrobot.models.FiveUnitsTableTop;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;

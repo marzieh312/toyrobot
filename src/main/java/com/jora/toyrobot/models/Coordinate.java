@@ -9,6 +9,19 @@ public class Coordinate {
         this.y = y;
     }
 
+
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public Coordinate getNewPosition(int deltaX, int deltaY) {
+        return new Coordinate(x + deltaX, y + deltaY);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -25,18 +38,6 @@ public class Coordinate {
         int result = x;
         result = 31 * result + y;
         return result;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public Coordinate getNewPosition(int deltaX, int deltaY) {
-        return new Coordinate(x + deltaX, y + deltaY);
     }
 
     @Override

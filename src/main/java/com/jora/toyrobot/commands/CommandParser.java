@@ -17,7 +17,7 @@ public class CommandParser {
     }};
 
 
-    public List<Command> parse(List<String> commandLines) throws Exception {
+    public static List<Command> parse(List<String> commandLines) throws Exception {
         List<Command> commands = new ArrayList<>();
         for(String command: commandLines) {
             commands.add(parse(command));
@@ -25,7 +25,7 @@ public class CommandParser {
         return commands;
     }
 
-    public Command parse(String commandStr) throws Exception {
+    private static Command parse(String commandStr) throws Exception {
         if(isPlaceCommand(commandStr)) {
             return getPlaceCommand(commandStr);
         }
@@ -36,11 +36,11 @@ public class CommandParser {
         return command;
     }
 
-    private boolean isPlaceCommand(String command) {
+    private static boolean isPlaceCommand(String command) {
         return "PLACE".equals(command.trim().split(" ")[0]);
     }
 
-    private Command getPlaceCommand(String command) throws Exception {
+    private static Command getPlaceCommand(String command) throws Exception {
         String[] placeCmdParts = command.trim().split(" ");
         if(placeCmdParts.length != 2) {
             throw new Exception("Invalid place command");

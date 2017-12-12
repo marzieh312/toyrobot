@@ -13,9 +13,7 @@ public class StartHere {
         }
         try {
             InputFileParser inputFileParser = new InputFileParser();
-            CommandParser commandParser = new CommandParser();
-
-            List<Command> commands = commandParser.parse(inputFileParser.parse(args[0]));
+            List<Command> commands = CommandParser.parse(inputFileParser.parse(args[0]));
 
             ToyRobot toyRobot = new ToyRobot(new FiveUnitsTableTop());
             toyRobot.roamingAround(commands);

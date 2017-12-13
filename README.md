@@ -9,9 +9,13 @@ be allowed.
 
 ·         Create an application that can read in commands of the following form -
 PLACE X,Y,F
+
 MOVE
+
 LEFT
+
 RIGHT
+
 REPORT
 
 ·         PLACE will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST.
@@ -35,30 +39,67 @@ Any move that would cause the robot to fall must be ignored.
 
 Example Input and Output:
 a)
+
 PLACE 0,0,NORTH
+
 MOVE
+
 REPORT
+
 Output: 0,1,NORTH
 
+
 b)
+
 PLACE 0,0,NORTH
+
 LEFT
+
 REPORT
+
 Output: 0,0,WEST
 
+
 c)
+
 PLACE 1,2,EAST
+
 MOVE
+
 MOVE
+
 LEFT
+
 MOVE
+
 REPORT
+
 Output: 3,3,NORTH
 
 Deliverables:
 The source files, the test data and any test code.
 
+## How to build and run app
+From command line run these commands
+
+To build the app: 
+
+	./gradlew build
+
+To run the app: 
+
+	./gradlew run -Pf=INPUT_FILE_NAME
+	eg: ./gradlew run -Pf=input2.txt
+
+## How to tun test
+From command line run this command
+
+	./gradlew test
+	
 ###Assumptions
-- throw exception and don't start the program if there is any command that is invalid. 
-- the parser is very restricted but robust. If there is exact requirement we can make it more flexible
-- you can see output in console
+- Throw exception and don't start the program if there is any command that is invalid. 
+- `InputFileParser` class parses the input file. As the exact requirements have not been mentioned in the the problem 
+description, the simplest parser has been implemented here.
+- The input file should be in `src/main/resources` folder, however you need to pass the file name through command line in the specified format
+- The test files for input should be put in `src/test/resources` folder
+- Report command will print the result in the console

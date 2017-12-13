@@ -38,7 +38,6 @@ public class CommandParserTest {
         List<Command> actualCommand = CommandParser.parse(Arrays.asList("PLACE 0,0,NORTH"));
 
         Command expectedCommand = new PlaceCommand(new Coordinate(0, 0), Direction.NORTH);
-        assertTrue(actualCommand.get(0) instanceof PlaceCommand);
         assertEquals(expectedCommand, actualCommand.get(0));
     }
 
